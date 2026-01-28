@@ -2,7 +2,7 @@
 
 This project simulates the creative setup flow for TikTok Ads, focusing on OAuth integration, complex validation logic, and robust error handling as per the assignment requirements.
 ## Tech Stack
-*   React: Core framework.
+*   React:framework.
 *   Vite: Build tool.
 *   TailwindCSS: Styling.
 *   Framer Motion: Animations. 
@@ -11,6 +11,7 @@ This project simulates the creative setup flow for TikTok Ads, focusing on OAuth
     copy-right https://lucide.dev/icons/
 
 ##  Quick Start
+**Kindly download the repository and extract it on your local machine**
 
 1.  *Install Dependencies:
     npm install
@@ -27,10 +28,10 @@ To simulate OAuth errors, you would typically modify the callback URL code manua
 
 
 
-# 3. Music Validation Logic
-*   **Invalid ID**: Enter `"invalid"`, `"123"`, or `"000"` in the **Existing Music ID** field to trigger an inline validation error.
-*   **Copyright Error (Upload)**: Upload any file with `"error"` in the filename to trigger a mock copyright/upload restriction.
-*   **Objective Rule**: Select **Conversions** objective and try to select **No Music**. The form will auto-reset to "Existing" or show an error if you try to submit.
+#  Music Validation Logic
+*   *Invalid ID**: Enter `"invalid"`, `"123"`, or `"000"` in the **Existing Music ID* field to trigger an inline validation error.
+*   *Copyright Error (Upload)**: Upload any file with `"error"` in the filename to trigger a mock copyright/upload restriction.
+*   *Objective Rule**: Select **Conversions** objective and try to select *No Music*. The form will auto-reset to "Existing" or show an error if you try to submit.
 
 
 
