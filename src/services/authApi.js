@@ -89,7 +89,9 @@ export const authApi = {
             localStorage.setItem('user_profile', JSON.stringify({
                 name: user.fullName,
                 email: user.contact,
-                photoUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent(user.fullName)}&background=random`
+                photoUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent(user.fullName)}&background=random`,
+                adsCreated: user.adsCreated || 0,
+                score: user.score || 50
             }));
 
             return {
@@ -108,7 +110,9 @@ export const authApi = {
         localStorage.setItem('user_profile', JSON.stringify({
             name: 'Test User',
             email: credentials.contact,
-            photoUrl: null
+            photoUrl: null,
+            adsCreated: 0,
+            score: 50
         }));
 
         return {
@@ -138,7 +142,9 @@ export const authApi = {
         localStorage.setItem('user_profile', JSON.stringify({
             name: newUser.fullName,
             email: newUser.contact,
-            photoUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent(newUser.fullName)}&background=random`
+            photoUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent(newUser.fullName)}&background=random`,
+            adsCreated: 0,
+            score: 50
         }));
 
         return { success: true, message: 'Account created successfully!' };

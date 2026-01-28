@@ -14,13 +14,14 @@ import {
     BrainCircuit,
     Palette,
     Music,
-    Target
+    Target,
+    Layout
 } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import OTPVerification from '../components/OTPVerification';
 
-const Landing = () => {
+const Landing = ({ isAuthenticated }) => {
     const [showOTP, setShowOTP] = useState(false);
 
     const handleConnect = () => {
@@ -79,21 +80,34 @@ const Landing = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-                    <Link
-                        to="/login"
-                        className="group relative px-8 py-4 bg-white text-black font-bold rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center gap-3 overflow-hidden text-center justify-center min-w-[200px]"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-r from-tiktok-pink to-tiktok-cyan opacity-0 group-hover:opacity-10 transition-opacity" />
-                        Log In
-                    </Link>
+                    {isAuthenticated ? (
+                        <Link
+                            to="/ad-history"
+                            className="group relative px-8 py-4 bg-white text-black font-bold rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center gap-3 overflow-hidden text-center justify-center min-w-[200px]"
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-r from-tiktok-pink to-tiktok-cyan opacity-0 group-hover:opacity-10 transition-opacity" />
+                            <Layout className="w-5 h-5" />
+                            Go to Dashboard
+                        </Link>
+                    ) : (
+                        <>
+                            <Link
+                                to="/login"
+                                className="group relative px-8 py-4 bg-white text-black font-bold rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-95 flex items-center gap-3 overflow-hidden text-center justify-center min-w-[200px]"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-r from-tiktok-pink to-tiktok-cyan opacity-0 group-hover:opacity-10 transition-opacity" />
+                                Log In
+                            </Link>
 
-                    <Link
-                        to="/register"
-                        className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] border border-white/10 min-w-[200px]"
-                    >
-                        <ShieldCheck className="w-5 h-5" />
-                        Register New Account
-                    </Link>
+                            <Link
+                                to="/register"
+                                className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] border border-white/10 min-w-[200px]"
+                            >
+                                <ShieldCheck className="w-5 h-5" />
+                                Register New Account
+                            </Link>
+                        </>
+                    )}
                 </div>
 
                 {/* Core Features Grid */}

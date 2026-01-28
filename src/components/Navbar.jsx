@@ -24,7 +24,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
     return (
         <nav className="border-b border-white/10 bg-black/50 backdrop-blur-md sticky top-0 z-50">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <Link to={isAuthenticated ? "/ad-history" : "/"} className="flex items-center gap-2 no-underline">
+                <Link to="/" className="flex items-center gap-2 no-underline">
                     <div className="w-8 h-8 bg-tiktok-pink rounded-lg flex items-center justify-center">
                         <Layout className="text-white w-5 h-5" />
                     </div>

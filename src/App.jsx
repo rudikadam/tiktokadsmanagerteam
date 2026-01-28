@@ -33,9 +33,7 @@ function App() {
 
                 <main className="container mx-auto px-4 py-8">
                     <Routes>
-                        <Route path="/" element={
-                            isAuthenticated ? <Navigate to="/ad-history" /> : <Landing />
-                        } />
+                        <Route path="/" element={<Landing isAuthenticated={isAuthenticated} />} />
 
                         <Route path="/oauth/callback" element={
                             <OAuthCallback onLogin={() => setIsAuthenticated(true)} setError={setGlobalError} />

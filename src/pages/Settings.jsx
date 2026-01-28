@@ -332,11 +332,15 @@ const Settings = ({ setError }) => {
 
                         <div className="grid grid-cols-2 gap-3 mb-8">
                             <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                                <p className="text-xl font-bold">12</p>
+                                <p className="text-xl font-bold">{profile.adsCreated || 0}</p>
                                 <p className="text-[10px] text-gray-500 uppercase font-bold">Ads Created</p>
                             </div>
                             <div className="p-3 rounded-2xl bg-white/5 border border-white/10 text-center">
-                                <p className="text-xl font-bold text-green-500">98%</p>
+                                <p className={`text-xl font-bold ${(profile.score || 50) >= 80 ? 'text-green-500' :
+                                        (profile.score || 50) >= 50 ? 'text-yellow-500' : 'text-red-500'
+                                    }`}>
+                                    {profile.score || 50}%
+                                </p>
                                 <p className="text-[10px] text-gray-500 uppercase font-bold">Score</p>
                             </div>
                         </div>

@@ -230,8 +230,12 @@ const AdCreation = ({ setError }) => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file && file.type.startsWith('image/')) {
-            const url = URL.createObjectURL(file);
-            setFormData(prev => ({ ...prev, posterUrl: url }));
+            // Convert to Base64 for localStorage persistence
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData(prev => ({ ...prev, posterUrl: reader.result }));
+            };
+            reader.readAsDataURL(file);
         } else {
             setError('Please upload a valid image file (jpg, png).');
         }
@@ -289,6 +293,12 @@ const AdCreation = ({ setError }) => {
             };
             savedAds.push(newAd);
             localStorage.setItem('tiktok_ads_history', JSON.stringify(savedAds));
+
+            // Update User Profile Stats
+            const userProfile = JSON.parse(localStorage.getItem('user_profile') || '{}');
+            userProfile.adsCreated = (userProfile.adsCreated || 0) + 1;
+            userProfile.score = Math.min((userProfile.score || 50) + 5, 100);
+            localStorage.setItem('user_profile', JSON.stringify(userProfile));
 
             setSuccess(newAd);
         } catch (err) {
