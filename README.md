@@ -11,7 +11,7 @@ This project simulates the creative setup flow for TikTok Ads, focusing on OAuth
     copy-right https://lucide.dev/icons/
 *   Routing: [React Router DOM](https://reactrouter.com/)
 
- ### 🔐 authentication & Security
+ #authentication & Security
 **Secure Login/Registration**: Comprehensive form validation (email format, password strength enforcement).
 **Forgot Password Flow**: 3-step verification process with OTP simulation and password reset.
 **Session Management**: Automatic token refresh handling, 401 error detection, and secure auto-logout.   
@@ -26,7 +26,7 @@ This project simulates the creative setup flow for TikTok Ads, focusing on OAuth
 3.  *Open Application*:
     Visit `http://localhost:5173`
 
-### ⚙️ Account Control
+#Account Control
 - **Profile Settings**: Manage identity details, regional settings, and social connections.
 - **Billing Portal**: Mock payment integration supporting multiple card types and transaction history.
 - **System Controls**: Application state management and local data persistence.
@@ -44,7 +44,7 @@ To simulate OAuth errors, you would typically modify the callback URL code manua
 
 
 
-## 🧪 Testing Credentials
+#Testing Credentials
 
 Since this project runs with mock services, use the following credentials for testing:
 
