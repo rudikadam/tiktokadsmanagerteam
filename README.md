@@ -1,156 +1,94 @@
-<<<<<<< HEAD
-# TikTok Ads Creative Flow
+# TikTok Ads Manager - Creative Flow
 
-A modern, responsive web application designed for managing TikTok advertising campaigns. This dashboard provides a premium user experience for ad creation, performance tracking, and account management.
+A high-fidelity, industrial-grade web application designed for elite TikTok advertisers. This platform simulates the entire lifecycle of a TikTok ad campaign, from creative generation and AI policy validation to secure payment processing and real-time performance monitoring.
 
-![Project Status](https://img.shields.io/badge/status-active-success.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## 🚀 Features
-
-### 🔐 authentication & Security
-- **Secure Login/Registration**: Comprehensive form validation (email format, password strength enforcement).
-- **Forgot Password Flow**: 3-step verification process with OTP simulation and password reset.
-- **Session Management**: Automatic token refresh handling, 401 error detection, and secure auto-logout.
-
-### 📊 Dashboard & Campaign Management
-- **Ad History**: Visual timeline and status tracking of advertising campaigns.
-- **Creative Flow**: Interface for setting up new ad creatives and campaigns.
-- **Responsive Design**: Fully optimized layouts for Mobile, Tablet, and Desktop devices.
-
-### ⚙️ Account Control
-=======
-# TikTok Ads Creative Flow - Frontend Assignment
-
-This project simulates the creative setup flow for TikTok Ads, focusing on OAuth integration, complex validation logic, and robust error handling as per the assignment requirements.
-## Tech Stack
-*   React:framework.
-*   Vite: Build tool.
-*   TailwindCSS: Styling.
-*   Framer Motion: Animations. 
-    copy-right https://motion.dev/
-*   Lucide React: Icons. 
-    copy-right https://lucide.dev/icons/
-*   Routing: [React Router DOM](https://reactrouter.com/)
-
- #authentication & Security
-**Secure Login/Registration**: Comprehensive form validation (email format, password strength enforcement).
-**Forgot Password Flow**: 3-step verification process with OTP simulation and password reset.
-**Session Management**: Automatic token refresh handling, 401 error detection, and secure auto-logout.   
-
-##  Quick Start
-**Kindly download the repository and extract it on your local machine**
-
-1.  *Install Dependencies:
-    npm install
-2.  *Run Development Server*:
-    npm run dev
-3.  *Open Application*:
-    Visit `http://localhost:5173`
-
-#Account Control
->>>>>>> origin/main
-- **Profile Settings**: Manage identity details, regional settings, and social connections.
-- **Billing Portal**: Mock payment integration supporting multiple card types and transaction history.
-- **System Controls**: Application state management and local data persistence.
-
-<<<<<<< HEAD
-## 🛠️ Technology Stack
-
-- **Framework**: [React](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Routing**: [React Router DOM](https://reactrouter.com/)
-
-## 📋 Prerequisites
-
-Before running this project, ensure you have the following installed:
-- **Node.js** (v16 or higher)
-- **npm** (v8 or higher) or **yarn**
-
-## 💻 Installation & Setup
+#Installation & Setup
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/tiktok-ads-creative-flow.git
-   cd tiktok-ads-creative-flow
-   ```
+   
+   git clone https://github.com/rudikadam/tiktokadsmanagerteam.git
+   cd tiktokadsmanagerteam
 
 2. **Install dependencies**
-   ```bash
+
    npm install
-   ```
-
+   
 3. **Start the development server**
-   ```bash
+
    npm run dev
-   ```
 
-4. **Open in browser**
-   Navigate to `http://localhost:5173` to view the application.
+ Core Features
 
-## 📁 Project Structure
+# Next-Gen Authentication
+- Secure Gatekeeping**: Multi-layer validation for Login and Registration.
+- OAuth 2.0 Simulation**: Full callback handling for external partner integrations.
+- Session Intelligence**: Automated token monitoring with secure 401 interceptors and forced logout protocols.
 
-```
-src/
-├── components/        # Reusable UI components (Navbar, ErrorBanner, etc.)
-├── pages/            # Main application pages
-│   ├── Login.jsx
-│   ├── Register.jsx
-│   ├── Dashboard.jsx
-│   ├── AdHistory.jsx
-│   ├── Settings.jsx
-│   └── ...
-├── services/         # API and logic services
-│   ├── authApi.js    # Mock Auth endpoints
-│   ├── billingApi.js # Mock Billing endpoints
-│   ├── tokenService.js # Token management & 401 handling
-│   └── storageService.js # Safe localStorage wrapper
-├── App.jsx           # Main routing and app layout
-└── main.jsx          # Entry point
-```
+# Payment & Security Protocol
+- *Gateway Simulation: Multi-stage payment processing (Credit Card, Crypto/QR).
+- *QR Verification: Interactive "Scan & Verify" simulation for secure ad funding.
+- *Transaction Vault: Detailed billing history and real-time balance tracking.
 
-## 🧪 Testing Credentials
-=======
-# OAuth Error Scenarios
-To simulate OAuth errors, you would typically modify the callback URL code manually in a real test, but for this demo, the Mock API is pre-wired to handle specific error codes if you were to redirect with them.
-*   Method: The application handles standard OAuth error query params automatically (e.g., `?error=access_denied`).
+# Monitoring & Analytics (The "Ad History")
+- *Live Stats Engine*: Real-time simulation of impressions, clicks, and CTR (Click-Through Rate).
+- *account Isolation*: Strictly segregated ad history per user account using unique storage keys.
+- *Performance Summary*: Global analytics dashboard for campaign-wide reach.
 
+# Technical Support Hub
+- *Support Protocol*: Category-based ticket submission system (Technical, Billing, Account).
+- *Priority Routing*: High-impact tickets are flagged for immediate engineering attention.
+- *Knowledge Core*: Self-service library for platform mastery and technical specs.
 
+#Admin Control Console
+- *Triage Center*: Centralized dashboard for managing inbound support tickets.
+- *Ticket Lifecycle*: Ability to resolve, delete, or escalate platform issues.
 
-#  Music Validation Logic
-*   *Invalid ID**: Enter `"invalid"`, `"123"`, or `"000"` in the **Existing Music ID* field to trigger an inline validation error.
-*   *Copyright Error (Upload)**: Upload any file with `"error"` in the filename to trigger a mock copyright/upload restriction.
-*   *Objective Rule**: Select **Conversions** objective and try to select *No Music*. The form will auto-reset to "Existing" or show an error if you try to submit.
+---
 
+#Technology Stack
 
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | [React 18](https://react.dev/) + [Vite](https://vitejs.dev/) |
+| **Styling** | [Tailwind CSS 3](https://tailwindcss.com/) + Custom Glassmorphism |
+| **Animation** | [Framer Motion](https://www.framer.com/motion/) |
+| **Iconography** | [Lucide React](https://lucide.dev/) |
+| **Navigation** | [React Router 6](https://reactrouter.com/) |
+| **Data Persistence** | Browser LocalStorage (Isolated per User) |
 
-#Testing Credentials
->>>>>>> origin/main
+---
 
-Since this project runs with mock services, use the following credentials for testing:
+#Key Dependencies
 
-- **Email**: `demo@tiktokads.com`, `test@test.com`, or any valid email format.
-- **Password**: `password` OR any password meeting complexity rules (8+ chars, 1 Uppercase, 1 Lowercase, 1 Number, 1 Special).
-- **OTP Code (Forgot Password)**: Any 6-digit code *except* `000000`.
+The following packages are essential for the application to run:
 
-<<<<<<< HEAD
-## 🤝 Contributing
+- `react` & `react-dom`: Core UI logic.
+- `react-router-dom`: SPA routing and navigation.
+- `framer-motion`: Premium transitions and modal animations.
+- `lucide-react`: High-fidelity vector iconography.
+- `clsx` & `tailwind-merge`: Dynamic utility class management.
+- `bootstrap` & `react-bootstrap`: Partial grid components and utility layouts.
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+---
 
-## 📄 License
+#Testing & Validation Logic
 
-Distributed under the MIT License. See `LICENSE` for more information.
-=======
+#Multi-Account Testing
+The app uses *User-Specific Storage*. To test this:
+1. Create Account A -> Create an Ad.
+2. Logout -> Create Account B.
+3. Ad History for Account B will be **Empty**, while Account A's ads remain secure.
 
-#Assumptions
-*   Mock Data: Since we don't have a live TikTok App for this assignment, all API calls are simulated    with `setTimeout` to mimic network latency.
-*   LocalStorage: Used for persisting the "Session" (OAuth token) and "Ad History" for the demo's sake.
-*   Design: Focused on a "Dark Mode" aesthetic similar to TikTok's creative tools.
->>>>>>> origin/main
+# Payment Simulation
+1. Fill out the Ad Creation form.
+2. Click **PAY & PUBLISH**.
+3. Observe the **QR Code Scanning** simulation.
+4. Wait for the **Verifying Transaction** phase before the ad is officially live.
+
+# Support & Admin Flow
+1. Navigate to **SUPPORT** and submit a "High Priority" ticket.
+2. Navigate to **ADMIN** (Shield Icon) to see your ticket appear in the triage queue.
+
+---
+

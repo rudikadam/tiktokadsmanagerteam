@@ -18,7 +18,12 @@ const OAuthCallback = ({ onLogin, setError }) => {
                 if (!code) throw { message: 'No authorization code provided.' };
 
                 await tiktokApi.exchangeToken(code);
-                onLogin();
+                onLogin({
+                    fullName: 'TikTok Ads Partner',
+                    email: 'partner@tiktokads.com',
+                    id: 'tt_' + Math.floor(Math.random() * 1000000),
+                    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80'
+                });
                 navigate('/create-ad');
             } catch (err) {
                 setError(err);

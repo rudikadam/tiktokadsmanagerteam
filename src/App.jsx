@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-=======
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
->>>>>>> origin/main
 import { useState, useEffect } from 'react';
 import Landing from './pages/Landing';
 import OAuthCallback from './pages/OAuthCallback';
@@ -11,12 +7,14 @@ import Settings from './pages/Settings';
 import AdHistory from './pages/AdHistory';
 import Register from './pages/Register';
 import Login from './pages/Login';
-<<<<<<< HEAD
 import GoogleLogin from './pages/GoogleLogin';
 import ForgotPassword from './pages/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar';
 import GlobalErrorBanner from './components/GlobalErrorBanner';
+import Preloader from './components/Preloader';
+import Support from './pages/Support';
+import AdminDashboard from './pages/AdminDashboard';
 import { tokenService } from './services/tokenService';
 
 
@@ -80,11 +78,12 @@ function App() {
     return (
         <Router>
             <div className="min-h-screen bg-black text-white selection:bg-tiktok-pink/30">
+                <Preloader />
                 <Navbar user={user} onLogout={logout} />
 
                 <GlobalErrorBanner error={globalError} onClear={clearError} />
 
-                <main className="container mx-auto px-3 py-6 md:px-6 md:py-10 lg:max-w-7xl">
+                <main className="container mx-auto px-4 py-8 md:px-8 md:py-12 lg:max-w-7xl relative min-h-[calc(100vh-80px)]">
                     <Routes>
                         <Route path="/" element={<Landing user={user} />} />
 
@@ -110,7 +109,7 @@ function App() {
                         } />
 
                         <Route path="/create-ad" element={
-                            user ? <AdCreation setError={setGlobalError} /> : <Navigate to="/login" />
+                            user ? <AdCreation user={user} setError={setGlobalError} /> : <Navigate to="/login" />
                         } />
 
                         <Route path="/settings" element={
@@ -118,75 +117,14 @@ function App() {
                         } />
 
                         <Route path="/ad-history" element={
-                            user ? <AdHistory /> : <Navigate to="/login" />
+                            user ? <AdHistory user={user} /> : <Navigate to="/login" />
                         } />
+
+                        <Route path="/support" element={<Support />} />
+
+                        <Route path="/admin" element={<AdminDashboard />} />
 
                         <Route path="/dashboard" element={<Dashboard />} />
-=======
-import Navbar from './components/Navbar';
-import GlobalErrorBanner from './components/GlobalErrorBanner';
-
-function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [globalError, setGlobalError] = useState(null);
-
-    useEffect(() => {
-        const token = localStorage.getItem('tiktok_token');
-        if (token) setIsAuthenticated(true);
-    }, []);
-
-    const clearError = () => setGlobalError(null);
-
-    return (
-        <Router>
-            <div className="min-h-screen bg-black text-white selection:bg-tiktok-pink/30">
-                <Navbar isAuthenticated={isAuthenticated} onLogout={() => {
-                    localStorage.removeItem('tiktok_token');
-                    setIsAuthenticated(false);
-                }} />
-
-                <GlobalErrorBanner error={globalError} onClear={clearError} />
-
-                <main className="container mx-auto px-4 py-8">
-                    <Routes>
-                        <Route path="/" element={<Landing isAuthenticated={isAuthenticated} />} />
-
-                        <Route path="/oauth/callback" element={
-                            <OAuthCallback onLogin={() => setIsAuthenticated(true)} setError={setGlobalError} />
-                        } />
-
-                        <Route path="/register" element={
-                            isAuthenticated ? <Navigate to="/ad-history" /> : <Register onLogin={() => setIsAuthenticated(true)} />
-                        } />
-
-                        <Route path="/login" element={
-                            isAuthenticated ? <Navigate to="/ad-history" /> : <Login onLogin={() => setIsAuthenticated(true)} />
-                        } />
-
-                        <Route path="/create-ad" element={
-                            isAuthenticated ? (
-                                <AdCreation setError={setGlobalError} />
-                            ) : (
-                                <Navigate to="/" />
-                            )
-                        } />
-
-                        <Route path="/settings" element={
-                            isAuthenticated ? (
-                                <Settings setError={setGlobalError} />
-                            ) : (
-                                <Navigate to="/" />
-                            )
-                        } />
-
-                        <Route path="/ad-history" element={
-                            isAuthenticated ? (
-                                <AdHistory />
-                            ) : (
-                                <Navigate to="/" />
-                            )
-                        } />
->>>>>>> origin/main
                     </Routes>
                 </main>
             </div>

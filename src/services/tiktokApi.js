@@ -5,11 +5,8 @@
  * This mock service simulates network latency, geo-restrictions, and authentication errors.
  */
 
-<<<<<<< HEAD
 import { tokenService } from './tokenService';
 
-=======
->>>>>>> origin/main
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const tiktokApi = {
@@ -39,13 +36,9 @@ export const tiktokApi = {
         }
 
         const mockToken = 'tt_access_token_' + Math.random().toString(36).substr(2, 9);
-<<<<<<< HEAD
         // We set tokens here using our service now
         tokenService.setTokens(mockToken, 'mock_refresh_' + Date.now());
 
-=======
-        localStorage.setItem('tiktok_token', mockToken);
->>>>>>> origin/main
         return { access_token: mockToken, expires_in: 86400 };
     },
 
@@ -79,18 +72,10 @@ export const tiktokApi = {
     },
 
     // Submit Ad
-<<<<<<< HEAD
     createAd: async (adData) => {
         await delay(2000);
 
         const token = tokenService.getToken();
-=======
-    // Submit Ad
-    createAd: async (adData) => {
-        await delay(2000);
-
-        const token = localStorage.getItem('tiktok_token');
->>>>>>> origin/main
         if (!token) {
             throw { status: 401, message: 'Expired or revoked token. Please reconnect.' };
         }
@@ -107,11 +92,8 @@ export const tiktokApi = {
             throw { status: 403, message: 'Account geo-restricted from creating ads in this region.' };
         }
         if (name.includes('auth_error')) {
-<<<<<<< HEAD
             tokenService.clearTokens(); // Force logout
-=======
-            localStorage.removeItem('tiktok_token'); // Force logout
->>>>>>> origin/main
+
             throw { status: 401, message: 'Session expired. Please reconnect your account.' };
         }
         if (name.includes('server_error')) {

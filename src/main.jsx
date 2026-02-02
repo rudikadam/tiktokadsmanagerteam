@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-<<<<<<< HEAD
 // Global error handler for catching non-React crashes
 window.onerror = function (message, source, lineno, colno, error) {
     const root = document.getElementById('root');
@@ -19,9 +18,6 @@ window.onerror = function (message, source, lineno, colno, error) {
     }
     return false;
 };
-
-=======
->>>>>>> origin/main
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <App />
