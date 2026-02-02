@@ -21,6 +21,7 @@ A high-fidelity, industrial-grade web application designed for elite TikTok adve
  Core Features
 
 # Next-Gen Authentication
+https://oauth.net/2/
 - Secure Gatekeeping**: Multi-layer validation for Login and Registration.
 - OAuth 2.0 Simulation**: Full callback handling for external partner integrations.
 - Session Intelligence**: Automated token monitoring with secure 401 interceptors and forced logout protocols.
