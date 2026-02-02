@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
+=======
+>>>>>>> origin/main
 import {
     PlusCircle,
     Music,
@@ -16,10 +19,14 @@ import {
     Volume2,
     Image as ImageIcon,
     Clock,
+<<<<<<< HEAD
     BarChart3,
     ArrowLeft,
     Zap,
     Sparkles
+=======
+    BarChart3
+>>>>>>> origin/main
 } from 'lucide-react';
 import { tiktokApi } from '../services/tiktokApi';
 import { spotifyApi } from '../services/spotifyApi';
@@ -54,7 +61,11 @@ const SpotifySearch = ({ onSelect, selectedTrack, onPlay, stopRef }) => {
         } else {
             if (onPlay) onPlay();
             audio.src = track.previewUrl;
+<<<<<<< HEAD
             audio.play().catch(console.error);
+=======
+            audio.play();
+>>>>>>> origin/main
             setPlayingId(track.id);
         }
     };
@@ -104,7 +115,10 @@ const SpotifySearch = ({ onSelect, selectedTrack, onPlay, stopRef }) => {
                         <div className="relative w-10 h-10 flex-shrink-0">
                             <img src={track.albumArt} className="w-full h-full rounded-lg shadow-lg group-hover:opacity-40 transition-opacity" alt={track.name} />
                             <button
+<<<<<<< HEAD
                                 type="button"
+=======
+>>>>>>> origin/main
                                 onClick={(e) => togglePlay(e, track)}
                                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                             >
@@ -112,26 +126,51 @@ const SpotifySearch = ({ onSelect, selectedTrack, onPlay, stopRef }) => {
                             </button>
                         </div>
                         <div className="flex-1 min-w-0">
+<<<<<<< HEAD
                             <p className="font-bold text-sm truncate uppercase tracking-tighter">{track.name}</p>
                             <p className="text-[10px] text-gray-500 truncate font-black tracking-widest">{track.artist}</p>
+=======
+                            <p className="font-bold text-sm truncate">{track.name}</p>
+                            <p className="text-xs text-gray-500 truncate">{track.artist}</p>
+>>>>>>> origin/main
                         </div>
                         {selectedTrack?.id === track.id && <CheckCircle2 className="w-4 h-4 text-[#1DB954]" />}
                     </button>
                 ))}
             </div>
+<<<<<<< HEAD
+=======
+
+            {selectedTrack && !results.some(t => t.id === selectedTrack.id) && (
+                <div className="flex items-center gap-3 p-2 rounded-xl border bg-[#1DB954]/20 border-[#1DB954] text-left">
+                    <img src={selectedTrack.albumArt} className="w-10 h-10 rounded-lg shadow-lg" alt={selectedTrack.name} />
+                    <div className="flex-1 min-w-0">
+                        <p className="font-bold text-sm truncate">{selectedTrack.name}</p>
+                        <p className="text-xs text-gray-500 truncate">{selectedTrack.artist}</p>
+                    </div>
+                    <CheckCircle2 className="w-4 h-4 text-[#1DB954]" />
+                </div>
+            )}
+>>>>>>> origin/main
         </div>
     );
 };
 
 const AdCreation = ({ setError }) => {
+<<<<<<< HEAD
     const navigate = useNavigate();
+=======
+>>>>>>> origin/main
     const [loading, setLoading] = useState(false);
     const [validatingMusic, setValidatingMusic] = useState(false);
     const [success, setSuccess] = useState(null);
     const [previewAudio] = useState(new Audio());
     const [isPlayingPreview, setIsPlayingPreview] = useState(false);
+<<<<<<< HEAD
     const [isEditMode, setIsEditMode] = useState(false);
 
+=======
+>>>>>>> origin/main
     const fileInputRef = useRef(null);
     const spotifyStopRef = useRef(null);
 
@@ -145,6 +184,7 @@ const AdCreation = ({ setError }) => {
         musicId: '',
         spotifyTrack: null,
         posterUrl: null,
+<<<<<<< HEAD
         durationDays: 7,
         localAudioUrl: null
     });
@@ -162,12 +202,22 @@ const AdCreation = ({ setError }) => {
         }
     }, []);
 
+=======
+        durationDays: 7, // Default 7 days
+    });
+
+    // Field errors
+    const [errors, setErrors] = useState({});
+
+    // Objective constant music constraint
+>>>>>>> origin/main
     useEffect(() => {
         if (formData.objective === 'CONVERSIONS' && formData.musicOption === 'none') {
             setFormData(prev => ({ ...prev, musicOption: 'existing' }));
         }
     }, [formData.objective]);
 
+<<<<<<< HEAD
     useEffect(() => {
         previewAudio.onended = () => setIsPlayingPreview(false);
         return () => {
@@ -176,6 +226,8 @@ const AdCreation = ({ setError }) => {
         };
     }, [previewAudio]);
 
+=======
+>>>>>>> origin/main
     const validateField = (name, value) => {
         let error = '';
         if (name === 'campaignName') {
@@ -220,6 +272,11 @@ const AdCreation = ({ setError }) => {
 
     const toggleUploadedPreview = (e) => {
         e.preventDefault();
+<<<<<<< HEAD
+=======
+
+        // Stop Spotify if playing
+>>>>>>> origin/main
         if (spotifyStopRef.current) spotifyStopRef.current();
 
         if (isPlayingPreview) {
@@ -227,14 +284,33 @@ const AdCreation = ({ setError }) => {
             setIsPlayingPreview(false);
         } else {
             previewAudio.src = formData.localAudioUrl;
+<<<<<<< HEAD
             previewAudio.play().catch(console.error);
+=======
+            previewAudio.play();
+>>>>>>> origin/main
             setIsPlayingPreview(true);
         }
     };
 
+<<<<<<< HEAD
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file && file.type.startsWith('image/')) {
+=======
+    useEffect(() => {
+        previewAudio.onended = () => setIsPlayingPreview(false);
+        return () => {
+            previewAudio.pause();
+            previewAudio.src = '';
+        };
+    }, []);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            // Convert to Base64 for localStorage persistence
+>>>>>>> origin/main
             const reader = new FileReader();
             reader.onloadend = () => {
                 setFormData(prev => ({ ...prev, posterUrl: reader.result }));
@@ -247,10 +323,20 @@ const AdCreation = ({ setError }) => {
 
     const handleMusicValidation = async () => {
         if (!formData.musicId) return;
+<<<<<<< HEAD
         setValidatingMusic(true);
         setErrors(prev => ({ ...prev, musicId: '' }));
         try {
             await tiktokApi.validateMusic(formData.musicId);
+=======
+
+        setValidatingMusic(true);
+        setErrors(prev => ({ ...prev, musicId: '' }));
+
+        try {
+            await tiktokApi.validateMusic(formData.musicId);
+            // Valid!
+>>>>>>> origin/main
         } catch (err) {
             setErrors(prev => ({ ...prev, musicId: err.message }));
         } finally {
@@ -260,14 +346,30 @@ const AdCreation = ({ setError }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+<<<<<<< HEAD
+=======
+
+        // Final validation
+>>>>>>> origin/main
         const fieldNames = ['campaignName', 'adText', 'cta'];
         if (formData.musicOption === 'existing') fieldNames.push('musicId');
 
         const isValid = fieldNames.every(name => validateField(name, formData[name]));
+<<<<<<< HEAD
+=======
+
+        // Objective logic check
+        if (formData.objective === 'CONVERSIONS' && formData.musicOption === 'none') {
+            setError('Music is required for Conversion campaigns.');
+            return;
+        }
+
+>>>>>>> origin/main
         if (!isValid) return;
 
         setLoading(true);
         try {
+<<<<<<< HEAD
             const response = isEditMode ? { ad_id: formData.id } : await tiktokApi.createAd(formData);
             const savedAds = JSON.parse(localStorage.getItem('tiktok_ads_history') || '[]');
 
@@ -289,6 +391,33 @@ const AdCreation = ({ setError }) => {
 
             localStorage.setItem('tiktok_ads_history', JSON.stringify(savedAds));
             setSuccess(formData);
+=======
+            const response = await tiktokApi.createAd(formData);
+
+            // Save to localStorage
+            const savedAds = JSON.parse(localStorage.getItem('tiktok_ads_history') || '[]');
+            const newAd = {
+                ...formData,
+                id: response.ad_id,
+                timestamp: new Date().toISOString(),
+                status: 'ACTIVE',
+                stats: {
+                    impressions: 0,
+                    clicks: 0,
+                    ctr: 0
+                }
+            };
+            savedAds.push(newAd);
+            localStorage.setItem('tiktok_ads_history', JSON.stringify(savedAds));
+
+            // Update User Profile Stats
+            const userProfile = JSON.parse(localStorage.getItem('user_profile') || '{}');
+            userProfile.adsCreated = (userProfile.adsCreated || 0) + 1;
+            userProfile.score = Math.min((userProfile.score || 50) + 5, 100);
+            localStorage.setItem('user_profile', JSON.stringify(userProfile));
+
+            setSuccess(newAd);
+>>>>>>> origin/main
         } catch (err) {
             setError(err);
         } finally {
@@ -297,9 +426,12 @@ const AdCreation = ({ setError }) => {
     };
 
     if (success) {
+<<<<<<< HEAD
         // Ensure user sees the success message
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
+=======
+>>>>>>> origin/main
         return (
             <div className="max-w-4xl mx-auto py-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -308,6 +440,7 @@ const AdCreation = ({ setError }) => {
                         animate={{ x: 0, opacity: 1 }}
                         className="space-y-6"
                     >
+<<<<<<< HEAD
                         <div className="w-20 h-20 bg-green-500/10 rounded-3xl flex items-center justify-center mb-4 border border-green-500/20">
                             <CheckCircle2 className="w-10 h-10 text-green-500" />
                         </div>
@@ -336,11 +469,40 @@ const AdCreation = ({ setError }) => {
                                 className="px-10 py-4 bg-white/5 text-white border border-white/10 font-black rounded-2xl hover:bg-white/10 transition-all active:scale-95"
                             >
                                 NEW AD
+=======
+                        <div className="w-20 h-20 bg-green-500/10 rounded-3xl flex items-center justify-center mb-4">
+                            <CheckCircle2 className="w-10 h-10 text-green-500" />
+                        </div>
+                        <h2 className="text-4xl font-extrabold tracking-tight">Ad Created <span className="text-tiktok-cyan">Successfully!</span></h2>
+                        <p className="text-gray-400 text-lg">
+                            Your campaign "<span className="text-white font-medium">{success.campaignName}</span>" has been submitted and saved to your local database.
+                        </p>
+
+                        <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                            <div className="flex justify-between text-sm">
+                                <span className="text-gray-500">Ad ID</span>
+                                <span className="font-mono text-tiktok-cyan">{success.id}</span>
+                            </div>
+                            <div className="flex justify-between text-sm">
+                                <span className="text-gray-500">Status</span>
+                                <span className="text-yellow-500">PENDING_REVIEW</span>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4 pt-4">
+                            <button
+                                onClick={() => setSuccess(null)}
+                                className="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-gray-200 transition-all flex items-center gap-2"
+                            >
+                                <PlusCircle className="w-5 h-5" />
+                                Create New Ad
+>>>>>>> origin/main
                             </button>
                         </div>
                     </motion.div>
 
                     <motion.div
+<<<<<<< HEAD
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         className="flex justify-center"
@@ -374,6 +536,46 @@ const AdCreation = ({ setError }) => {
                                 <p className="text-sm font-medium italic line-clamp-2 leading-relaxed opacity-80">{success.adText}</p>
                                 <div className="py-4 px-8 bg-tiktok-cyan text-black font-black text-center rounded-xl shadow-[0_0_20px_rgba(0,255,242,0.3)]">
                                     {success.cta?.toUpperCase()}
+=======
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        className="flex justify-center"
+                    >
+                        <div className="w-full max-w-[320px] aspect-[9/16] bg-gray-900 rounded-[40px] border-[8px] border-zinc-800 relative shadow-2xl overflow-hidden group">
+                            {success.posterUrl && (
+                                <img src={success.posterUrl} className="absolute inset-0 w-full h-full object-cover" alt="Ad" />
+                            )}
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+
+                            {/* Simulated Playback Button */}
+                            {(success.localAudioUrl || (success.spotifyTrack && success.spotifyTrack.previewUrl)) && (
+                                <button
+                                    onClick={success.localAudioUrl ? toggleUploadedPreview : (e) => {
+                                        // Quick hack for spotify play in success screen
+                                        if (isPlayingPreview) {
+                                            previewAudio.pause(); setIsPlayingPreview(false);
+                                        } else {
+                                            previewAudio.src = success.spotifyTrack.previewUrl;
+                                            previewAudio.play(); setIsPlayingPreview(true);
+                                        }
+                                    }}
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-tiktok-pink rounded-full flex items-center justify-center shadow-2xl shadow-tiktok-pink/50 opacity-0 group-hover:opacity-100 transition-all hover:scale-110 active:scale-95"
+                                >
+                                    {isPlayingPreview ? <Pause className="w-8 h-8 text-white fill-white" /> : <Play className="w-8 h-8 text-white fill-white ml-2" />}
+                                </button>
+                            )}
+
+                            <div className="absolute bottom-10 left-6 right-6 space-y-3">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-10 h-10 rounded-full bg-tiktok-pink flex items-center justify-center font-bold text-white">
+                                        {success.campaignName?.charAt(0).toUpperCase() || 'T'}
+                                    </div>
+                                    <span className="font-bold text-sm">@{success.campaignName?.toLowerCase().replace(/\s+/g, '_') || 'brand_handle'}</span>
+                                </div>
+                                <p className="text-sm line-clamp-2">{success.adText || 'No ad text provided'}</p>
+                                <div className="py-3 px-6 bg-tiktok-cyan text-black font-bold text-center rounded-lg shadow-lg">
+                                    {success.cta}
+>>>>>>> origin/main
                                 </div>
                             </div>
                         </div>
@@ -384,6 +586,7 @@ const AdCreation = ({ setError }) => {
     }
 
     return (
+<<<<<<< HEAD
         <div className="max-w-4xl mx-auto py-10 px-4">
             <div className="mb-10 flex items-center justify-between">
                 <div>
@@ -413,10 +616,25 @@ const AdCreation = ({ setError }) => {
 
                         <div>
                             <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-3 ml-2">Campaign Name</label>
+=======
+        <div className="max-w-4xl mx-auto">
+            <div className="mb-8">
+                <h1 className="text-3xl font-bold">Create Ad Creative</h1>
+                <p className="text-gray-400">Configure your campaign details and music selection.</p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Main Form */}
+                <form onSubmit={handleSubmit} className="lg:col-span-2 space-y-6">
+                    <div className="p-6 rounded-3xl glass space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">Campaign Name</label>
+>>>>>>> origin/main
                             <input
                                 name="campaignName"
                                 value={formData.campaignName}
                                 onChange={handleInputChange}
+<<<<<<< HEAD
                                 className={`w-full bg-black/40 border-2 ${errors.campaignName ? 'border-red-500' : 'border-white/5'} rounded-2xl px-6 py-4 focus:outline-none focus:border-tiktok-pink/50 transition-all font-bold`}
                                 placeholder="Summer Drop 2024"
                             />
@@ -441,23 +659,62 @@ const AdCreation = ({ setError }) => {
 
                         <div>
                             <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-3 ml-2">Ad Creative Text</label>
+=======
+                                className={`w-full bg-white/5 border ${errors.campaignName ? 'border-red-500' : 'border-white/10'} rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-tiktok-pink transition-all`}
+                                placeholder="Summer Sale 2024"
+                            />
+                            {errors.campaignName && <p className="mt-1 text-xs text-red-500">{errors.campaignName}</p>}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">Campaign Objective</label>
+                            <div className="grid grid-cols-2 gap-3">
+                                {['TRAFFIC', 'CONVERSIONS'].map(obj => (
+                                    <button
+                                        key={obj}
+                                        type="button"
+                                        onClick={() => setFormData(prev => ({ ...prev, objective: obj }))}
+                                        className={`px-4 py-3 rounded-xl border text-sm font-bold transition-all ${formData.objective === obj
+                                            ? 'bg-tiktok-pink border-tiktok-pink text-white'
+                                            : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
+                                            }`}
+                                    >
+                                        {obj}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">Ad Text</label>
+>>>>>>> origin/main
                             <textarea
                                 name="adText"
                                 rows="3"
                                 value={formData.adText}
                                 onChange={handleInputChange}
+<<<<<<< HEAD
                                 className={`w-full bg-black/40 border-2 ${errors.adText ? 'border-red-500' : 'border-white/5'} rounded-2xl px-6 py-4 focus:outline-none focus:border-tiktok-pink/50 transition-all font-bold italic resize-none`}
                                 placeholder="Capture their attention in 3 seconds..."
                             />
                             <div className="flex justify-between mt-2 px-2">
                                 <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">{errors.adText}</p>
                                 <p className={`text-[10px] font-black tracking-widest ${formData.adText.length > 100 ? 'text-red-500' : 'text-gray-600'}`}>
+=======
+                                className={`w-full bg-white/5 border ${errors.adText ? 'border-red-500' : 'border-white/10'} rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-tiktok-pink transition-all`}
+                                placeholder="What's your ad about?"
+                            />
+                            <div className="flex justify-between mt-1">
+                                {errors.adText ? <p className="text-xs text-red-500">{errors.adText}</p> : <div />}
+                                <p className={`text-xs ${formData.adText.length > 100 ? 'text-red-500' : 'text-gray-500'}`}>
+>>>>>>> origin/main
                                     {formData.adText.length}/100
                                 </p>
                             </div>
                         </div>
 
                         <div>
+<<<<<<< HEAD
                             <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 mb-3 ml-2">Call to Action</label>
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                                 {CTA_OPTIONS.map(opt => (
@@ -490,12 +747,42 @@ const AdCreation = ({ setError }) => {
                                 { id: 'upload', label: 'UPLOAD', icon: Upload },
                                 { id: 'spotify', label: 'SPOTIFY', icon: Music },
                                 { id: 'none', label: 'NONE', icon: Trash2, disabled: formData.objective === 'CONVERSIONS' }
+=======
+                            <label className="block text-sm font-medium text-gray-400 mb-1">Call to Action</label>
+                            <select
+                                name="cta"
+                                value={formData.cta}
+                                onChange={handleInputChange}
+                                className={`w-full bg-white/5 border ${errors.cta ? 'border-red-500' : 'border-white/10'} text-white rounded-xl px-4 py-3 focus:outline-none transition-all`}
+                            >
+                                <option value="" disabled className="bg-black">Select CTA</option>
+                                {CTA_OPTIONS.map(opt => <option key={opt} value={opt} className="bg-black">{opt}</option>)}
+                            </select>
+                            {errors.cta && <p className="mt-1 text-xs text-red-500">{errors.cta}</p>}
+                        </div>
+                    </div>
+
+                    {/* Music Selection Card */}
+                    <div className="p-6 rounded-3xl glass space-y-6">
+                        <div className="flex items-center gap-2">
+                            <Music className="w-5 h-5 text-tiktok-cyan" />
+                            <h3 className="font-bold">Music Selection</h3>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            {[
+                                { id: 'existing', label: 'Existing ID', icon: Music },
+                                { id: 'upload', label: 'Upload Music', icon: Upload },
+                                { id: 'spotify', label: 'Spotify', icon: Music },
+                                { id: 'none', label: 'No Music', icon: Trash2, disabled: formData.objective === 'CONVERSIONS' }
+>>>>>>> origin/main
                             ].map(opt => (
                                 <button
                                     key={opt.id}
                                     type="button"
                                     disabled={opt.disabled}
                                     onClick={() => setFormData(prev => ({ ...prev, musicOption: opt.id, spotifyTrack: null }))}
+<<<<<<< HEAD
                                     className={`flex flex-col items-center justify-center p-5 rounded-3xl border-2 transition-all gap-2 ${formData.musicOption === opt.id
                                         ? 'bg-tiktok-cyan/10 border-tiktok-cyan text-tiktok-cyan shadow-lg shadow-tiktok-cyan/10'
                                         : opt.disabled ? 'opacity-20 cursor-not-allowed border-transparent' : 'bg-white/5 border-white/5 text-gray-500 hover:bg-white/10'
@@ -503,49 +790,117 @@ const AdCreation = ({ setError }) => {
                                 >
                                     <opt.icon className="w-6 h-6" />
                                     <span className="text-[10px] font-black tracking-widest">{opt.label}</span>
+=======
+                                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all ${formData.musicOption === opt.id
+                                        ? 'bg-tiktok-cyan/10 border-tiktok-cyan text-tiktok-cyan'
+                                        : opt.disabled ? 'opacity-30 cursor-not-allowed border-white/5' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
+                                        }`}
+                                >
+                                    {opt.id === 'spotify' ? (
+                                        <div className="w-5 h-5 mb-2 bg-[#1DB954] rounded-full flex items-center justify-center p-0.5">
+                                            <svg viewBox="0 0 24 24" fill="black" className="w-full h-full"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.498 17.302c-.218.358-.684.47-1.042.252-2.872-1.754-6.486-2.152-10.741-1.177-.41.094-.82-.163-.914-.572-.094-.41.163-.82.572-.914 4.654-1.065 8.64-.612 11.872 1.36.358.218.47.684.252 1.04zM18.965 14.043c-.274.444-.85.59-1.295.316-3.288-2.02-8.3-2.613-12.188-1.433-.5.152-1.026-.131-1.178-.63-.152-.5.131-1.026.63-1.178 4.453-1.352 10.003-.683 13.715 1.595.445.274.59.85.316 1.295zm.135-3.398c-3.945-2.345-10.457-2.56-14.234-1.411-.605.184-1.246-.162-1.431-.767-.184-.605.162-1.246.767-1.431 4.34-1.317 11.536-1.056 16.088 1.646.544.323.722 1.03.399 1.574-.323.543-1.03.721-1.574.399z" /></svg>
+                                        </div>
+                                    ) : <opt.icon className="w-5 h-5 mb-2" />}
+                                    <span className="text-xs font-bold">{opt.label}</span>
+>>>>>>> origin/main
                                 </button>
                             ))}
                         </div>
 
                         <AnimatePresence mode="wait">
                             {formData.musicOption === 'existing' && (
+<<<<<<< HEAD
                                 <motion.div key="existing" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-4">
                                     <div className="flex gap-3">
+=======
+                                <motion.div
+                                    key="existing"
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="space-y-3"
+                                >
+                                    <label className="block text-xs font-semibold uppercase tracking-wider text-gray-500">Industry Music ID</label>
+                                    <div className="flex gap-2">
+>>>>>>> origin/main
                                         <input
                                             name="musicId"
                                             value={formData.musicId}
                                             onChange={handleInputChange}
+<<<<<<< HEAD
                                             className="flex-1 bg-black/40 border-2 border-white/5 rounded-2xl px-6 py-4 focus:outline-none focus:border-tiktok-cyan/50 font-bold"
                                             placeholder="Enter Global Music ID..."
+=======
+                                            className={`flex-1 bg-white/5 border ${errors.musicId ? 'border-red-500' : 'border-white/10'} rounded-xl px-4 py-3 focus:outline-none transition-all`}
+                                            placeholder="e.g. 7123456789"
+>>>>>>> origin/main
                                         />
                                         <button
                                             type="button"
                                             onClick={handleMusicValidation}
                                             disabled={validatingMusic || !formData.musicId}
+<<<<<<< HEAD
                                             className="px-8 bg-white/10 rounded-2xl text-[10px] font-black tracking-widest hover:bg-white/20 transition-all border border-white/5"
                                         >
                                             {validatingMusic ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : 'VALIDATE'}
                                         </button>
                                     </div>
                                     {errors.musicId && <p className="text-xs text-red-500 font-bold ml-2 italic underline underline-offset-4 decoration-2">{errors.musicId}</p>}
+=======
+                                            className="px-4 bg-white/10 rounded-xl text-xs font-bold hover:bg-white/20 disabled:opacity-50 transition-colors"
+                                        >
+                                            {validatingMusic ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Validate'}
+                                        </button>
+                                    </div>
+                                    {errors.musicId && (
+                                        <div className="flex items-start gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+                                            <AlertTriangle className="w-4 h-4 text-red-500 mt-0.5" />
+                                            <p className="text-xs text-red-400 leading-tight">{errors.musicId}</p>
+                                        </div>
+                                    )}
+>>>>>>> origin/main
                                 </motion.div>
                             )}
 
                             {formData.musicOption === 'spotify' && (
+<<<<<<< HEAD
                                 <motion.div key="spotify" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+=======
+                                <motion.div
+                                    key="spotify"
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="space-y-4"
+                                >
+                                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#1DB954]">Connect Spotify Track</label>
+>>>>>>> origin/main
                                     <SpotifySearch
                                         onSelect={(track) => {
                                             setFormData(prev => ({ ...prev, spotifyTrack: track, musicId: track.id }));
                                             setErrors(prev => ({ ...prev, musicId: '' }));
                                         }}
                                         selectedTrack={formData.spotifyTrack}
+<<<<<<< HEAD
                                         onPlay={() => { if (isPlayingPreview) { previewAudio.pause(); setIsPlayingPreview(false); } }}
                                         stopRef={spotifyStopRef}
                                     />
+=======
+                                        onPlay={() => {
+                                            if (isPlayingPreview) {
+                                                previewAudio.pause();
+                                                setIsPlayingPreview(false);
+                                            }
+                                        }}
+                                        stopRef={spotifyStopRef}
+                                    />
+                                    {errors.musicId && <p className="text-xs text-red-500">{errors.musicId}</p>}
+>>>>>>> origin/main
                                 </motion.div>
                             )}
 
                             {formData.musicOption === 'upload' && (
+<<<<<<< HEAD
                                 <motion.div key="upload" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-6">
                                     <div
                                         onClick={() => fileInputRef.current?.click()}
@@ -558,10 +913,45 @@ const AdCreation = ({ setError }) => {
                                         <div>
                                             <p className="font-black italic text-lg tracking-tighter">CLOUD UPLOAD</p>
                                             <p className="text-[10px] text-gray-500 font-bold mt-1 tracking-widest uppercase">MP3 / WAV / AAC (PRO ONLY)</p>
+=======
+                                <motion.div
+                                    key="upload"
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="space-y-4"
+                                >
+                                    <label className="block text-xs font-semibold uppercase tracking-wider text-gray-500">Upload MP3/Audio</label>
+                                    <div
+                                        onClick={() => fileInputRef.current?.click()}
+                                        onDragOver={(e) => e.preventDefault()}
+                                        onDrop={(e) => {
+                                            e.preventDefault();
+                                            handleFileChange({ target: { files: e.dataTransfer.files } });
+                                        }}
+                                        className="p-8 border-2 border-dashed border-white/10 hover:border-tiktok-cyan/50 hover:bg-tiktok-cyan/5 rounded-3xl flex flex-col items-center justify-center text-center space-y-4 cursor-pointer transition-all group"
+                                    >
+                                        <input
+                                            type="file"
+                                            ref={fileInputRef}
+                                            className="hidden"
+                                            accept="audio/*"
+                                            onChange={handleFileChange}
+                                        />
+
+                                        <div className="w-14 h-14 bg-tiktok-cyan/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <Upload className="w-7 h-7 text-tiktok-cyan" />
+                                        </div>
+
+                                        <div>
+                                            <p className="font-bold">Drag & drop or <span className="text-tiktok-cyan">browse</span></p>
+                                            <p className="text-xs text-gray-400 mt-1">MP3, WAV or AAC (Max 10MB)</p>
+>>>>>>> origin/main
                                         </div>
                                     </div>
 
                                     {formData.localAudioUrl && (
+<<<<<<< HEAD
                                         <div className="flex items-center gap-6 p-6 bg-white/5 rounded-[32px] border border-white/5">
                                             <button
                                                 type="button"
@@ -589,10 +979,60 @@ const AdCreation = ({ setError }) => {
                         <div className="flex items-center gap-3 ml-2">
                             <ImageIcon className="w-5 h-5 text-tiktok-pink" />
                             <h3 className="text-sm font-black italic tracking-widest text-white">VISUAL ASSET</h3>
+=======
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl"
+                                        >
+                                            <button
+                                                onClick={toggleUploadedPreview}
+                                                className="w-12 h-12 bg-tiktok-cyan rounded-full flex items-center justify-center flex-shrink-0 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-tiktok-cyan/20"
+                                            >
+                                                {isPlayingPreview ? <Pause className="w-5 h-5 text-black fill-black" /> : <Play className="w-5 h-5 text-black fill-black ml-1" />}
+                                            </button>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-sm font-bold truncate">{formData.musicId}</p>
+                                                <p className="text-[10px] text-gray-500 uppercase tracking-widest">Ready to use</p>
+                                            </div>
+                                            <button
+                                                onClick={() => setFormData(prev => ({ ...prev, musicId: '', localAudioUrl: null }))}
+                                                className="p-2 text-gray-500 hover:text-red-500 transition-colors"
+                                            >
+                                                <Trash2 className="w-4 h-4" />
+                                            </button>
+                                        </motion.div>
+                                    )}
+                                </motion.div>
+                            )}
+
+                            {formData.musicOption === 'none' && (
+                                <motion.div
+                                    key="none"
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="flex items-center gap-3 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-2xl"
+                                >
+                                    <Info className="w-5 h-5 text-yellow-500" />
+                                    <p className="text-xs text-yellow-500 leading-tight">
+                                        Running ads without music may decrease engagement. Only allowed for Traffic objective.
+                                    </p>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+                    <div className="p-6 rounded-3xl glass space-y-4">
+                        <div className="flex items-center gap-2">
+                            <ImageIcon className="w-5 h-5 text-tiktok-pink" />
+                            <h3 className="font-bold">Ad Creative</h3>
+>>>>>>> origin/main
                         </div>
 
                         <div
                             onClick={() => document.getElementById('image-upload').click()}
+<<<<<<< HEAD
                             className="group relative aspect-video bg-black/40 border-2 border-dashed border-white/5 rounded-[32px] overflow-hidden flex flex-col items-center justify-center cursor-pointer hover:border-tiktok-pink/40 transition-all"
                         >
                             <input id="image-upload" type="file" className="hidden" accept="image/*" onChange={handleImageChange} />
@@ -601,18 +1041,47 @@ const AdCreation = ({ setError }) => {
                                     <img src={formData.posterUrl} className="w-full h-full object-cover opacity-80" alt="Poster" />
                                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
                                         <p className="text-white font-black italic text-lg tracking-widest">CHANGE ASSET</p>
+=======
+                            onDragOver={(e) => e.preventDefault()}
+                            onDrop={(e) => {
+                                e.preventDefault();
+                                handleImageChange({ target: { files: e.dataTransfer.files } });
+                            }}
+                            className="group relative aspect-video bg-white/5 border-2 border-dashed border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center cursor-pointer hover:border-tiktok-pink/50 transition-all"
+                        >
+                            <input
+                                id="image-upload"
+                                type="file"
+                                className="hidden"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+
+                            {formData.posterUrl ? (
+                                <>
+                                    <img src={formData.posterUrl} className="w-full h-full object-cover" alt="Poster" />
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                                        <p className="text-white font-bold">Change Image</p>
+>>>>>>> origin/main
                                     </div>
                                 </>
                             ) : (
                                 <>
+<<<<<<< HEAD
                                     <Sparkles className="w-12 h-12 text-gray-800 mb-4 group-hover:text-tiktok-pink group-hover:scale-110 transition-all" />
                                     <p className="text-lg font-black italic tracking-tighter">DROP POSTER</p>
                                     <p className="text-[10px] text-gray-600 font-bold mt-2 uppercase tracking-widest">Optimized 1080x1920 (9:16)</p>
+=======
+                                    <ImageIcon className="w-8 h-8 text-gray-500 mb-2 group-hover:text-tiktok-pink transition-colors" />
+                                    <p className="text-sm font-bold">Upload Poster Image</p>
+                                    <p className="text-[10px] text-gray-500 mt-1">Recommended size: 1080x1920 (9:16)</p>
+>>>>>>> origin/main
                                 </>
                             )}
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <button
                         type="submit"
                         disabled={loading}
@@ -720,6 +1189,123 @@ const AdCreation = ({ setError }) => {
                         </div>
                         <p className="text-[10px] text-gray-500 font-bold leading-relaxed uppercase tracking-widest">
                             Reach is estimated based on {formData.durationDays} day duration and current TikTok peak trends.
+=======
+                    <div className="p-6 rounded-3xl glass space-y-6">
+                        <div className="flex items-center gap-2">
+                            <Clock className="w-5 h-5 text-tiktok-cyan" />
+                            <h3 className="font-bold">Campaign Schedule</h3>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="flex justify-between items-center">
+                                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500">Duration</label>
+                                <span className="text-tiktok-cyan font-bold">{formData.durationDays} Days</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="1"
+                                max="30"
+                                name="durationDays"
+                                value={formData.durationDays}
+                                onChange={handleInputChange}
+                                className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-tiktok-cyan"
+                            />
+                            <div className="flex justify-between text-[10px] text-gray-500 font-bold uppercase">
+                                <span>1 Day</span>
+                                <span>15 Days</span>
+                                <span>30 Days</span>
+                            </div>
+                            <p className="text-[10px] text-gray-500 italic mt-2 leading-relaxed">
+                                * Ads are monitored in real-time. History is automatically cleaned after 24 hours.
+                            </p>
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full py-4 bg-tiktok-pink hover:bg-tiktok-pink/90 text-white font-bold rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98] disabled:opacity-50"
+                    >
+                        {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Ad Creative'}
+                    </button>
+                </form>
+
+                {/* Sidebar Preview (Simplified) */}
+                <div className="space-y-6">
+                    <div className="p-6 rounded-3xl glass sticky top-24">
+                        <h3 className="font-bold mb-4">Live Preview</h3>
+                        <div className="aspect-[9/16] bg-gray-900 rounded-2xl border border-white/10 relative overflow-hidden flex items-center justify-center group/preview">
+                            {formData.posterUrl && (
+                                <img src={formData.posterUrl} className="absolute inset-0 w-full h-full object-cover" alt="Ad Background" />
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60" />
+
+                            {/* Liquid Glass Play Button */}
+                            {(formData.localAudioUrl || (formData.spotifyTrack && formData.spotifyTrack.previewUrl)) && (
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    onClick={formData.localAudioUrl ? toggleUploadedPreview : (e) => {
+                                        e.preventDefault();
+                                        if (isPlayingPreview) {
+                                            previewAudio.pause(); setIsPlayingPreview(false);
+                                        } else {
+                                            previewAudio.src = formData.spotifyTrack.previewUrl;
+                                            previewAudio.play(); setIsPlayingPreview(true);
+                                        }
+                                    }}
+                                    className="z-50 w-20 h-20 rounded-full flex items-center justify-center backdrop-blur-xl bg-white/10 border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] opacity-0 group-hover/preview:opacity-100 transition-all duration-500 overflow-hidden relative"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-50" />
+                                    <div className="absolute inset-0 animate-pulse bg-tiktok-cyan/5 blur-xl" />
+                                    {isPlayingPreview ? (
+                                        <Pause className="w-8 h-8 text-white fill-white relative z-10" />
+                                    ) : (
+                                        <Play className="w-8 h-8 text-white fill-white ml-2 relative z-10" />
+                                    )}
+                                </motion.button>
+                            )}
+
+                            <div className="z-10 absolute bottom-6 left-4 right-4 space-y-2">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-8 h-8 rounded-full bg-tiktok-pink flex items-center justify-center font-bold text-white text-[10px]">
+                                        {formData.campaignName?.charAt(0).toUpperCase() || 'T'}
+                                    </div>
+                                    <span className="text-sm font-bold truncate">@{formData.campaignName?.toLowerCase().replace(/\s+/g, '_') || 'your_brand'}</span>
+                                </div>
+                                <p className="text-sm line-clamp-3">
+                                    {formData.adText || 'Start typing your ad text...'}
+                                </p>
+                                <div className="flex items-center gap-2 text-xs">
+                                    <Music className="w-3 h-3 animate-pulse" />
+                                    <span className="truncate">
+                                        {formData.musicOption === 'existing' ? (formData.musicId || 'Select music...') :
+                                            formData.musicOption === 'upload' ? 'Custom Music' :
+                                                formData.musicOption === 'spotify' ? (formData.spotifyTrack ? `${formData.spotifyTrack.name} - ${formData.spotifyTrack.artist}` : 'Search Spotify...') :
+                                                    'Original Sound'}
+                                    </span>
+                                </div>
+                                {formData.cta && (
+                                    <div className="mt-2 py-2 px-4 bg-tiktok-cyan text-black font-bold text-sm text-center rounded">
+                                        {formData.cta}
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="absolute right-4 bottom-24 flex flex-col gap-6 text-center">
+                                <div className="space-y-1">
+                                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">❤️</div>
+                                    <span className="text-[10px] font-bold">12k</span>
+                                </div>
+                                <div className="space-y-1">
+                                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">💬</div>
+                                    <span className="text-[10px] font-bold">42</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p className="mt-4 text-[10px] text-center text-gray-500">
+                            Mock preview based on TikTok Ads mobile layout.
+>>>>>>> origin/main
                         </p>
                     </div>
                 </div>
